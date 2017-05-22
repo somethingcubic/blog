@@ -7,29 +7,44 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = '登录';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="sign-overlay"></div>
+<div class="signpanel"></div>
 
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+<div class="panel signin">
+    <div class="panel-heading">
+        <h4 class="panel-title">欢迎登陆博客系统</h4>
     </div>
-</div>
+    <div class="panel-body">
+        <button class="btn btn-primary btn-quirk btn-fb btn-block">联系我们</button>
+        <div class="or">or</div>
+        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+
+        <?= $form->field($model, 'username', [
+                'inputTemplate' =>
+                    '<div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>{input}
+                    </div>'
+        ])->textInput(['autofocus' => true, 'placeholder' => 'Please enter your account'])->label(false) ?>
+
+        <?= $form->field($model, 'password', [
+            'inputTemplate' =>
+                '<div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>{input}
+                    </div>'
+        ])->passwordInput(['placeholder' => 'Please enter your password'])->label(false) ?>
+
+        <?= $form->field($model, 'rememberMe')->checkbox() ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-quirk btn-block btn-success', 'name' => 'login-button']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+</div><!-- panel -->
+
+

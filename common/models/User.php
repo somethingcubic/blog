@@ -35,6 +35,16 @@ class User extends BaseModel implements IdentityInterface
         return '{{%user}}';
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'email' => '邮箱',
+            'status' => '状态',
+            'created_at' => '创建时间',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
